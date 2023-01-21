@@ -20,6 +20,10 @@ class Piece:
 
 	def add_move(self, move):
 		self.moves.append(move)
+		self.moved = True
+
+	def clear_moves(self):
+		self.moves = []
 
 
 class Pawn(Piece):
