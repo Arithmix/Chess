@@ -89,7 +89,14 @@ class Main:
 
 						# valid if valid move
 						if board.valid_move(dragger.piece, move):
+
+							captured = board.squares[released_row][released_col].has_piece()
+
 							board.move(dragger.piece, move)
+
+							# sounds
+							game.sound_effect(captured)
+
 							# show method
 							game.show_bg(screen)
 							game.show_last_move(screen)
@@ -100,6 +107,18 @@ class Main:
 
 					dragger.undrag_piece()
 
+				# key press
+				elif event.type == pygame.KEYDOWN:
+
+					# changing theme
+					if event.key == pygame.K_t:
+						game.change_theme()
+
+					if event.key == pygame.K_r:
+						game.reset()
+						game = self.game
+						board = self.game.board
+						dragger = self.game.dragger
 
 				# quit application
 				elif event.type == pygame.QUIT:
